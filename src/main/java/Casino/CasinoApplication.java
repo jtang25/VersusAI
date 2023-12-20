@@ -65,7 +65,7 @@ public class CasinoApplication{
 		return game.changePlayerCount(playerCount);
 	}
 
-	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53/", allowCredentials = "true")
 	@GetMapping("/changeDifficulty")
 	@ResponseBody
 	public String changeDifficulty(@RequestParam("difficulty") String difficulty,
@@ -77,7 +77,7 @@ public class CasinoApplication{
 		return game.changeBotDifficulty(difficulty);
 	}
 
-	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53/", allowCredentials = "true")
 	@GetMapping("/makeMove")
 	@ResponseBody
 	public Integer makeMove(@RequestParam("position") String position,

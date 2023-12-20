@@ -99,7 +99,7 @@ public class TicTacToe {
         int[][] board = Board;
         HashSet<Integer> takenSpots = new HashSet<Integer>();
         while(takenSpots.size()<board.length*board[0].length){
-            int move = ThreadLocalRandom.current().nextInt(0, board.length*board[0].length + 1);
+            int move = ThreadLocalRandom.current().nextInt(0, board.length*board[0].length);
             int row = Math.round((float) move /board.length);
             int col = move % board.length;
             if (board[row][col]==0){
