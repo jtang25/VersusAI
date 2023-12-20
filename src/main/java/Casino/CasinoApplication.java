@@ -43,16 +43,39 @@ public class CasinoApplication{
 		Enumeration<String> enumeration = session.getAttributeNames();
 		System.out.println(session.getAttribute("game"));
 		if (session.getAttribute("game")==null) {
-			TicTacToe game = new TicTacToe(Long.parseLong(gameId), Integer.parseInt(size), Integer.parseInt(botDifficulty));
+			TicTacToe game = new TicTacToe(Long.parseLong(gameId), Integer.parseInt(size), botDifficulty);
 			session.setAttribute("game", game);
 		} else {
-			TicTacToe game = new TicTacToe(Long.parseLong(gameId), Integer.parseInt(size), Integer.parseInt(botDifficulty));
+			TicTacToe game = new TicTacToe(Long.parseLong(gameId), Integer.parseInt(size), botDifficulty);
 			session.setAttribute("game", game);
 			return "Game reset successfully.";
 		}
 		return "Game created successfully.";
 	}
 
+	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@GetMapping("/changePlayers")
+	@ResponseBody
+	public String changePlayers(@RequestParam("playerCount") Integer playerCount,
+								HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession(true);
+		String sessionId = session.getId();
+		System.out.println(sessionId);
+		TicTacToe game = (TicTacToe) session.getAttribute("game");
+		return game.changePlayerCount(playerCount);
+	}
+
+	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@GetMapping("/changeDifficulty")
+	@ResponseBody
+	public String changeDifficulty(@RequestParam("difficulty") String difficulty,
+								HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession(true);
+		String sessionId = session.getId();
+		TicTacToe game = (TicTacToe) session.getAttribute("game");
+		System.out.println(sessionId);
+		return game.changeBotDifficulty(difficulty);
+	}
 
 	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
 	@GetMapping("/makeMove")
@@ -62,6 +85,7 @@ public class CasinoApplication{
 		HttpSession session = request.getSession(true);
 		String sessionId = session.getId();
 		TicTacToe game = (TicTacToe) session.getAttribute("game");
+		System.out.println(sessionId);
 		return game.makeMove(Integer.parseInt(position)-1);
 	}
 
@@ -69,5 +93,16 @@ public class CasinoApplication{
 	@GetMapping("/getSessionIDs")
 	public Set<String> getSessionIDs(HttpServletRequest request, HttpServletResponse response){
 		return sessionMap.keySet();
+	}
+
+	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@GetMapping("/getSessionID")
+	@ResponseBody
+	public String getSessionID(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession(true);
+		String sessionId = session.getId();
+		TicTacToe game = (TicTacToe) session.getAttribute("game");
+		System.out.println(sessionId);
+		return sessionId;
 	}
 }

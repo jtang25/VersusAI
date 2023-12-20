@@ -7,19 +7,22 @@ public class TicTacToe {
     private Long game_id;
     private int[][] Board;
     private int turn;
-    private int botDifficulty;
-    public TicTacToe(Long gameId, int botDifficulty) {
+    private String botDifficulty;
+    private int playerCount;
+    public TicTacToe(Long gameId, String botDifficulty) {
         this.game_id = gameId;
         this.Board = new int[4][4];
         this.turn = 1;
         this.botDifficulty = botDifficulty;
+        this.playerCount = 1;
     }
 
-    public TicTacToe(Long gameId, int size, int botDifficulty) {
+    public TicTacToe(Long gameId, int size, String botDifficulty) {
         this.game_id = gameId;
         this.Board = new int[size][size];
         this.turn = 1;
         this.botDifficulty = botDifficulty;
+        this.playerCount = 1;
     }
 
     public void printBoard(){
@@ -29,6 +32,16 @@ public class TicTacToe {
             }
             System.out.println();
         }
+    }
+
+    public String changePlayerCount(int playerCount){
+        this.playerCount = playerCount;
+        return "Player Count successfully set to "+playerCount;
+    }
+
+    public String changeBotDifficulty(String diffifculty){
+        this.botDifficulty = diffifculty;
+        return "Bot Difficulty successfully set to "+diffifculty;
     }
 
     private void incrementTurn(){
@@ -58,12 +71,13 @@ public class TicTacToe {
     }
 
     public int makeBotMove(){
+        System.out.println(this.botDifficulty);
         switch (this.botDifficulty) {
-            case 0:
+            case "Easy":
                 return makeEasyBotMove();
-            case 1:
+            case "Medium":
                 return makeMediumBotMove();
-            case 2:
+            case "Hard":
                 return makeHardBotMove();
             default:
                 return -1;
