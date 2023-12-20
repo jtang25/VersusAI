@@ -22,11 +22,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     async function startUp() {
         if (!requestPending) {
             requestPending = true;
-            const message = await fetch(`http://localhost/connect`, {
+            const message = await fetch(`http://172.203.234.53/connect`, {
                 method: 'GET',
                 credentials: 'include'
             });
-            const message1 = await fetch(`http://localhost/newGame?${queryString}`, {
+            const message1 = await fetch(`http://172.203.234.53/newGame?${queryString}`, {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
                 turn += 1;
                 try {
-                    let botMove = await fetch(`http://localhost/makeMove?position=` + className, {
+                    let botMove = await fetch(`http://172.203.234.53/makeMove?position=` + className, {
                         method: 'GET',
                         credentials: 'include',
                     });
@@ -73,7 +73,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     async function newGame() {
-        const message1 = await fetch(`http://localhost/newGame?${queryString}`, {
+        const message1 = await fetch(`http://172.203.234.53/newGame?${queryString}`, {
             method: 'GET',
             credentials: 'include'
         });
@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     break;
             }
             playerCountButton.textContent = playerCount + ' ' + playerCountButton.textContent.slice(2);
-            const message = await fetch(`http://localhost/changePlayers?playerCount=` + playerCount, {
+            const message = await fetch(`http://172.203.234.53/changePlayers?playerCount=` + playerCount, {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -121,28 +121,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let message = '';
             switch (difficultyButton.textContent) {
                 case 'Easy':
-                    message = await fetch(`http://localhost/changeDifficulty?difficulty=Medium`, {
+                    message = await fetch(`http://172.203.234.53/changeDifficulty?difficulty=Medium`, {
                         method: 'GET',
                         credentials: 'include',
                     });
                     difficultyButton.textContent = 'Medium';
                     break;
                 case 'Medium':
-                    message = await fetch(`http://localhost/changeDifficulty?difficulty=Hard`, {
+                    message = await fetch(`http://172.203.234.53/changeDifficulty?difficulty=Hard`, {
                         method: 'GET',
                         credentials: 'include',
                     });
                     difficultyButton.textContent = 'Hard'
                     break;
                 case 'Hard':
-                    message = await fetch(`http://localhost/changeDifficulty?difficulty=ML`, {
+                    message = await fetch(`http://172.203.234.53/changeDifficulty?difficulty=ML`, {
                         method: 'GET',
                         credentials: 'include',
                     });
                     difficultyButton.textContent = 'ML';
                     break;
                 case 'ML':
-                    message = await fetch(`http://localhost/changeDifficulty?difficulty=Easy`, {
+                    message = await fetch(`http://172.203.234.53/changeDifficulty?difficulty=Easy`, {
                         method: 'GET',
                         credentials: 'include',
                     });

@@ -21,7 +21,7 @@ public class CasinoApplication{
 		SpringApplication.run(CasinoApplication.class, args);
 	}
 
-	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
 	@GetMapping("/connect")
 	public String connect(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(true);
@@ -31,7 +31,7 @@ public class CasinoApplication{
 		return sessionId;
 	}
 
-	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
 	@GetMapping("/newGame")
 	@ResponseBody
 	public String newGame(@RequestParam("gameId") String gameId,
@@ -53,7 +53,7 @@ public class CasinoApplication{
 		return "Game created successfully.";
 	}
 
-	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
 	@GetMapping("/changePlayers")
 	@ResponseBody
 	public String changePlayers(@RequestParam("playerCount") Integer playerCount,
@@ -65,7 +65,7 @@ public class CasinoApplication{
 		return game.changePlayerCount(playerCount);
 	}
 
-	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
 	@GetMapping("/changeDifficulty")
 	@ResponseBody
 	public String changeDifficulty(@RequestParam("difficulty") String difficulty,
@@ -77,7 +77,7 @@ public class CasinoApplication{
 		return game.changeBotDifficulty(difficulty);
 	}
 
-	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
 	@GetMapping("/makeMove")
 	@ResponseBody
 	public Integer makeMove(@RequestParam("position") String position,
@@ -89,13 +89,13 @@ public class CasinoApplication{
 		return game.makeMove(Integer.parseInt(position)-1);
 	}
 
-	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
 	@GetMapping("/getSessionIDs")
 	public Set<String> getSessionIDs(HttpServletRequest request, HttpServletResponse response){
 		return sessionMap.keySet();
 	}
 
-	@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+	@CrossOrigin(origins = "http://172.203.234.53", allowCredentials = "true")
 	@GetMapping("/getSessionID")
 	@ResponseBody
 	public String getSessionID(HttpServletRequest request, HttpServletResponse response){
