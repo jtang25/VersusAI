@@ -3,6 +3,9 @@ package Casino.TicTacToe;
 import Casino.CasinoApplication;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+
 public class TicTacToe {
     private Long game_id;
     private int[][] Board;
@@ -95,10 +98,9 @@ public class TicTacToe {
     public int makeEasyBotMove(){
         int[][] board = Board;
         HashSet<Integer> takenSpots = new HashSet<Integer>();
-        Random random = new Random();
         while(takenSpots.size()<board.length*board[0].length){
-            int move = random.nextInt(0,board.length*board[0].length);
-            int row = Math.round(move /board.length);
+            int move = ThreadLocalRandom.current().nextInt(0, board.length*board[0].length + 1);
+            int row = Math.round((float) move /board.length);
             int col = move % board.length;
             if (board[row][col]==0){
                 if (this.turn%2==0){
