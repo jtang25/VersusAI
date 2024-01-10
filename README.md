@@ -1,5 +1,5 @@
 # Versus AI
-Versus-AI is a dynamic online game hub project hosted on GitHub, focused on delivering an engaging gaming experience through classical games like 4x4 Tic-Tac-Toe enhanced with advanced AI capabilities. The primary goals include:
+Versus-AI is a web-based game hub project, focused on delivering an engaging gaming experience through classical games like 4x4 Tic-Tac-Toe enhanced with advanced AI capabilities and machine learning. The primary goals include:
 
 Current Focus:
 
